@@ -7,6 +7,10 @@ union Data{
 
 int main(){
 	data.i = 1;
-	printf( "Memory : %d %d %d %d \n ", data.c[0], data.c[1], data.c[2], data.c[3]);
+	if (data.c[0]){
+		printf("Little-endian\n");
+	} else {
+		printf("Big-endian\n");	
+	}
 	return 0;
 }
