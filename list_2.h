@@ -202,12 +202,7 @@ void menu() {
     }
 
     clearList(list);
+.
 }
 
-int main() {
-
-    menu();
-
-    return 0;
-}
 #endif
