@@ -202,7 +202,6 @@ void menu() {
     }
 
     clearList(list);
-.
 }
 
 #endif
