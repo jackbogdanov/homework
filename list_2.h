@@ -200,6 +200,8 @@ void menu() {
 
         }
     }
+
+    clearList(list);
 }
 
 int main() {
