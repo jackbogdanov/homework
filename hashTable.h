@@ -1,4 +1,4 @@
-#ifndef LIST_4
+#ifndef HASH_1
 #pragma once
 
 #include <stdio.h>
