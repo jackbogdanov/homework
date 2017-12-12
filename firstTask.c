@@ -1,18 +1,22 @@
 #include <stdio.h>
 #include <memory.h>
 
+#define MAX_STRING 255
+
 int main() {
-    char str[255];
+
+    char str[MAX_STRING];
+
     char ch;
     scanf("%s \n", str);
     scanf("%c", &ch);
 
-    char clearStr[255] = "1";
+    char clearStr[MAX_STRING] = {0};
 
     int i = 0, j = 0;
+    int len = (int) strlen(str);
 
-
-    while (i < strlen(str)){
+    while (i < len){
         if (str[i] != ch){
             clearStr[j] = str[i];
             j++;
