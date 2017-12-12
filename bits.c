@@ -43,10 +43,10 @@ int getByte(int x, int n){
     return (x >> move) & msk;
 }
 
-int logicalShift(int x, int n){
-    int msk = ~((1 << 31) >> (n + ~0));
-
-    return ((x >> n) & msk & n) | x;
+int logicalShift(int x, int n) {
+  x = x >> n;
+  x = x & (~(((1 << 31) >> n) << 1));
+  return x;
 }
 
 int addOK(int x, int y){
