@@ -3,7 +3,9 @@
 
 int main() {
     int b1[] = {1, 0, 1};
+
     int b2[] = {1};
+
 
     int sizeB1 = sizeof(b1)/ sizeof(int);
     int sizeB2 = sizeof(b2)/ sizeof(int);
@@ -25,8 +27,9 @@ int main() {
         }
 
 
-    } else {
-        if (sizeB1 > sizeB2) {
+
+    } else{
+        if (sizeB1 > sizeB2){
             printf("b1 > b2");
         } else {
             printf("b2 > b1");
