@@ -2,16 +2,15 @@
 #include <string.h>
 # include <stdio.h>
 
-int myStrlen(char *str){
-	int i = 0, len = 0;
+int myStrlen(char * str){
+	int i = 0;
 
 	while (str[i] != '\0'){
-		len++;
 		i++;
 	}
 
 
-	return len;
+	return i;
 }
 
 void myStrcopy(char *dst, char *src){
@@ -47,18 +46,19 @@ int myStrcmp(char *s1, char *s2){
 		i++;
 	}
 
-	return myStrlen(s1) - myStrlen(s2);
+
+	return (int) s1[i] - (int)s2[i];
 }
 
 
 
 int main(){
-	char s1[] = "a";
+	char s1[] = "ab";
 	char s2[] = "ab";
 
 	printf("strcmp: %d\n", myStrcmp(s1,s2));
 
-	printf("strlen: %d\n", myStrlen(s1));
+	printf("strlen: %d\n", myStrlen(s2));
 
 	myStrcopy(s1, s2);
 	printf("strcopy: %s\n", s1);
