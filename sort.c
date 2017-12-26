@@ -2,7 +2,7 @@
 #include <time.h>
 
 typedef void (*function)(int , int *);
-#define MILLION 100000000
+#define MAS_SIZE 100000000
 #define MAX_NUMBER_OF_COMMAND 5
 #define SORTS_COUNT 4
 #define MAX_VALUE 51
