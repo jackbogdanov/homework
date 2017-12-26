@@ -1,16 +1,6 @@
-#ifndef LIST
-#pragma once
-
-typedef struct node {
-    struct node * next;
-    int value;
-} Node;
-
-typedef struct linkedList {
-    size_t length;
-    struct node * head;
-    struct node * end;
-} LinkedList;
+#include <glob.h>
+#include <malloc.h>
+#include "list.h"
 
 LinkedList * createList() {
     struct linkedList * list = calloc(sizeof(LinkedList), 1);
@@ -148,5 +138,8 @@ void printList(LinkedList * list) {
         pointer = pointer->next;
     }
 }
-#endif
+
+
+
+
 
