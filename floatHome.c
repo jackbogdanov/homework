@@ -1,38 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+#define NUM_OF_COMMANDS 3
 
-
-struct descriptionStruct{
+struct descriptionStruct {
     char *str;
     void (*function)(float x);
-} description[3];
+} description[NUM_OF_COMMANDS];
 
 
 
-void initDesc(char *str, void (*function)(float x), int num){
+void initDesc(char *str, void (*function)(float x), int num) { 
     description[num].str = str;
     description[num].function = function;
 }
 
 void printDescription(struct descriptionStruct str[], int sizeStruckt)
 {
-    for (int i = 0; i < sizeStruckt; i++){
+    for (int i = 0; i < sizeStruckt; i++) {
         printf("Способ №%d: %s\n", i + 1, str[i].str);
     }
 
 }
 
-void mantissaPrint(int mantissa){
+void mantissaPrint(int mantissa) {
     char str[24] = "";
     union {
         int mantissa:23;
         short bit:1;
-    }bitField;
+    } bitField;
     bitField.mantissa = mantissa;
 
     int n = 23, i = 0;
-    while (bitField.mantissa << i + 9 && i < 23){
+    while (bitField.mantissa << i + 9 && i < 23) {
         bitField.mantissa = bitField.mantissa >> n - (i + 1);
         str[i] = (char) (abs(bitField.bit) + '0') ;
         bitField.mantissa = mantissa;
@@ -43,14 +43,14 @@ void mantissaPrint(int mantissa){
     if (strlen(str))printf(".%s\n", str);
 }
 
-void printResult(int sign, int order, int mantissa){
+void printResult(int sign, int order, int mantissa) {
     printf("    %d   %d\n", sign, order - 127);
     printf("(-1) * 2 * 1");
     mantissaPrint(mantissa);
 }
 
 
-void funkOne(float x){
+void funkOne(float x) {
     union {
         float num;
         int intNum;
@@ -71,7 +71,7 @@ void funkOne(float x){
 }
 
 
-void funkTwo(float x){
+void funkTwo(float x) {
     union {
         float num;
         int intNum;
@@ -86,7 +86,7 @@ void funkTwo(float x){
     printResult(sign, order, mantissa);
 }
 
-void funkThree(float x){
+void funkThree(float x) {
     int *px = (int*) &x;
     int intX = *px;
 
@@ -98,7 +98,7 @@ void funkThree(float x){
 }
 
 int main() {
-    if (sizeof(float) == 4){
+    if (sizeof(float) == 4) {
         int sizeStruckt = sizeof(description)/ sizeof(description[0]);
         initDesc("Вывести float при помощи Union с int", funkOne, 0);
         initDesc("Вывести float при помощи  union со структурой с bit fields", funkTwo, 1);
@@ -109,22 +109,22 @@ int main() {
         int num;
         float x, y = 1;
         scanf("%d %f %f",&num, &x, &y);
-        if (y){
+        if (y) {
             printf("%f\n", x / y);
             description[num - 1].function(x / y);
-        } else{
-            if (x){
+        } else {
+            if (x) {
                 if (x > 0){
                     printf("+Inf");
-                } else{
+                } else {
                     printf("-Inf");
                 }
-            } else{
+            } else {
                 printf("NaN");
             }
 
         }
-    } else{
+    } else {
         printf("ERROR: floatSize != 4");
     }
 
