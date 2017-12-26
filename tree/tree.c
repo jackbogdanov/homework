@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define NUM_OF_NODES 4
 
 typedef struct node{
 
@@ -55,11 +54,6 @@ void parseFile(Node *nodes[], char * nameOfFile) {
             node = createNode(value, frequency);
             nodes[i] = node;
             i++;
-
-            if (i > NUM_OF_NODES) {
-                printf("Вышел за граница массива!");
-                break;
-            }
         }
 
 
@@ -217,7 +211,9 @@ void printTree(Node * node, int level) {
 }
 
 int main() {
-    Node * nodes[NUM_OF_NODES];
+    int numOfNodes = 5;
+
+    Node * nodes[numOfNodes];
 
     int len = sizeof(nodes)/ sizeof(nodes[0]);
 
@@ -232,9 +228,14 @@ int main() {
 
     FILE * file = fopen("/home/jack/инфа/optimalTree/out.dot", "w");
 
-    fprintf(file, "digraph {\n");
-    printTreeInFile(buildTree(nodes, 0, len - 1), file);
-    fprintf(file, "}\n");
+    if (file != NULL) {
+        fprintf(file, "digraph {\n");
+        printTreeInFile(buildTree(nodes, 0, len - 1), file);
+        fprintf(file, "}\n");
+    } else {
+        printf("Ошибка во время открытия файла!");
+    }
+
 
     fclose(file);
 
