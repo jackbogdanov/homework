@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define MAX_COUNT_NODES 100000
 
 typedef struct node{
 
@@ -172,13 +173,13 @@ Node * buildTree(Node * nodes[], int begin, int end) {
             minNode->right = buildTree(nodes, m + 1, end);
         }
 
-
-//            minNode->left = buildTree(nodes, 0, m - 1);
-//        minNode->right = buildTree(nodes, m + 1, end);
     } else {
         minNode = nodes[begin];
     }
-
+    
+    if (nodes[begin]->frequency == nodes[end]->frequency) {
+        minNode = nodes[end/begin];
+    }
 
     return minNode;
 }
@@ -211,9 +212,9 @@ void printTree(Node * node, int level) {
 }
 
 int main() {
-    int numOfNodes = 5;
 
-    Node * nodes[numOfNodes];
+
+    Node * nodes[MAX_COUNT_NODES];
 
     int len = sizeof(nodes)/ sizeof(nodes[0]);
 
